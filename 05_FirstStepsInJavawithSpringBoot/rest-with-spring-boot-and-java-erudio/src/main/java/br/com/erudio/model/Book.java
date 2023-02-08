@@ -24,7 +24,7 @@ public class Book implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Id nunca é nullable, não precisa informar
 	private Long id;
 	
-	@Column(nullable = false, length = 180) //indica qual o nome da coluna dentro da tabela no banco
+	@Column(name = "author",nullable = false, length = 180) //indica qual o nome da coluna dentro da tabela no banco
 	private String author;
 	@Column(name = "launch_date", nullable = false) //indica qual o nome da coluna dentro da tabela no banco
 	@Temporal(TemporalType.DATE)

@@ -252,7 +252,7 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
     }
     @Test
     @Order(6)
-    public void testFindBookByAuthor() throws JsonMappingException, JsonProcessingException {
+    public void testFindByAuthor() throws JsonMappingException, JsonProcessingException {
     	var wrapper = given()
     			.config(
     					RestAssuredConfig
@@ -262,10 +262,10 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
     			.spec(specification)
     			.contentType(TestConfigs.CONTENT_TYPE_YML)
     			.accept(TestConfigs.CONTENT_TYPE_YML)
-    			.pathParam("author", "agu")
+    			.pathParam("author", "Agu")
 				.queryParams("page", 0, "size", 6, "direction", "asc")
 				.when()
-				.get("/findBooknByAuthor/{author}")
+				.get("/findBookByAuthor/{author}")
     			.then()
     			.statusCode(200)
     			.extract()

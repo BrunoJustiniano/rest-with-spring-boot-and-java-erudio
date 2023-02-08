@@ -219,11 +219,11 @@ public class BookControllerJsonTest extends AbstractIntegrationTest {
     }
     @Test
     @Order(7)
-    public void testFindBookByAuthor() throws JsonMappingException, JsonProcessingException {
+    public void testFindByAuthor() throws JsonMappingException, JsonProcessingException {
     	
     	var content = given().spec(specification)
     			.contentType(TestConfigs.CONTENT_TYPE_JSON)
-    			.pathParam("author", "agu")
+    			.pathParam("author", "Agu")
 				.queryParams("page", 0, "size", 6, "direction", "asc")
     			.when()
     			.get("/findBookByAuthor/{author}")
@@ -243,7 +243,8 @@ public class BookControllerJsonTest extends AbstractIntegrationTest {
     	assertNotNull(foundBookOne.getTitle());
     	assertNotNull(foundBookOne.getAuthor());
     	assertNotNull(foundBookOne.getPrice());
-    	assertTrue(foundBookOne.getId() > 0);
+    	
+    	assertEquals(15, foundBookOne.getId());	    	
     	assertEquals("Implantando a governança de TI", foundBookOne.getTitle());
     	assertEquals("Aguinaldo Aragon Fernandes e Vladimir Ferraz de Abreu", foundBookOne.getAuthor());
     	assertEquals(54.0, foundBookOne.getPrice());

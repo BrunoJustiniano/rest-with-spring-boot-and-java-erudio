@@ -41,9 +41,9 @@ public PagedModel<EntityModel<BookVO>> findBookByAuthor(String author, Pageable 
 		
 		var bookPage = repository.findBookByAuthor(author, pageable);
 		
-		var bookVosPage = bookPage.map(p -> DozerMapper.parseObject(p, BookVO.class));
+		var bookVosPage = bookPage.map(b -> DozerMapper.parseObject(b, BookVO.class));
 		
-		bookVosPage.map(p -> p.add(linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()));
+		bookVosPage.map(b -> b.add(linkTo(methodOn(BookController.class).findById(b.getKey())).withSelfRel()));
 		
 		/*var persons = DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
 		persons.stream()
@@ -60,9 +60,9 @@ public PagedModel<EntityModel<BookVO>> findBookByAuthor(String author, Pageable 
 		
 			var bookPage = repository.findAll(pageable);
 			
-			var bookVosPage = bookPage.map(p -> DozerMapper.parseObject(p, BookVO.class));
+			var bookVosPage = bookPage.map(b -> DozerMapper.parseObject(b, BookVO.class));
 			
-			bookVosPage.map(p -> p.add(linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()));
+			bookVosPage.map(b -> b.add(linkTo(methodOn(BookController.class).findById(b.getKey())).withSelfRel()));
 			
 			Link link = linkTo(methodOn(BookController.class)
 					.findAll(pageable.getPageNumber(), pageable.getPageSize(), "asc")).withSelfRel();
